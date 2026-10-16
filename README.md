@@ -4,6 +4,8 @@ Llama-3.1-8B와 Qwen3.8-27B를 실제 학습 프레임워크에서 실행하고,
 
 **H100 서버에서는 [START_HERE_H100.md](START_HERE_H100.md)부터 시작한다.** 후속 에이전트에게는 [실행 요청문](docs/H100_AGENT_PROMPT.md)과 [handoff](docs/AGENT_HANDOFF.md)를 함께 전달한다. H100 실측과 새 최대 캡처 기능의 GPU 검증은 아직 수행하지 않았다.
 
+**이전 안내로 작업 중인 H100 에이전트는 [최신 전환 안내](docs/H100_CONTINUE.md)를 먼저 읽는다.** 기존 작업·수정 보존, 최신 checkout 준비, 재사용할 환경, 실행·재시도 명령을 한 문서에 정리했다.
+
 - **SFT:** verl의 PyTorch FSDP2 trainer로 제공된 에이전트 궤적을 학습한다. 사전학습 가중치를 로드하고 실제 역전파·옵티마이저 업데이트를 수행한다.
 - **GRPO:** verl + vLLM에서 응답 생성, 응답 기반 보상, 그룹 advantage, 참조 모델 KL, 정책 업데이트 및 rollout 가중치 전달을 수행한다.
 - **RL 작업 범위:** 정답을 계산할 수 있는 Python 코드의 출력값 예측이다. 임의 advantage를 사용하지 않는다. 실제 저장소 수정·셸 도구·SWE-bench 채점이 포함된 전체 에이전트 실험은 아니다.

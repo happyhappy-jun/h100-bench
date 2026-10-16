@@ -1,5 +1,8 @@
 # Autonomous benchmark handoff
 
+If work started under an older prompt, read [H100_CONTINUE.md](H100_CONTINUE.md) first.
+Preserve the active checkout and local changes before preparing the current branch state.
+
 ## Objective
 
 Collect reproducible H100 measurements for Llama-3.1-8B and Qwen3.8-27B.

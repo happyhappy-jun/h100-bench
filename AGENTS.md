@@ -2,6 +2,10 @@
 
 Apply parent workspace instructions before these repository rules.
 
+For H100 execution or continuation, read [docs/H100_CONTINUE.md](docs/H100_CONTINUE.md) first.
+It records the current user-requested campaign and the transition from older instructions.
+Do not add A6000 runs, pre-smoke runs, GPU-count sweeps, or a global two-hour deadline to that campaign.
+
 Read `README.md`, `docs/METHOD_MAPPING.md`, and `docs/AGENT_HANDOFF.md` before changing the benchmark.
 
 ## Scope
