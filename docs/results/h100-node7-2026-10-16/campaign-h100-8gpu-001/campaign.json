@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "state": "running",
+  "started_utc": "2026-10-16T06:21:38.372712+00:00",
+  "cases": [
+    {
+      "id": "steps-0010/llama8b-sft",
+      "model": "llama8b",
+      "mode": "sft",
+      "steps": 10,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_llama8b_sft.json",
+      "state": "passed",
+      "started_utc": "2026-10-16T06:21:38.385840+00:00",
+      "timeout_s": 86400,
+      "finished_utc": "2026-10-16T06:23:55.136678+00:00",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed": 136.72100226208568,
+      "cleanup_errors": []
+    },
+    {
+      "id": "steps-0010/llama8b-grpo",
+      "model": "llama8b",
+      "mode": "grpo",
+      "steps": 10,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_llama8b_grpo.json",
+      "state": "passed",
+      "started_utc": "2026-10-16T06:23:55.141956+00:00",
+      "timeout_s": 86400,
+      "finished_utc": "2026-10-16T06:34:49.101539+00:00",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed": 653.9354688860476,
+      "cleanup_errors": []
+    },
+    {
+      "id": "steps-0010/qwen27b-sft",
+      "model": "qwen27b",
+      "mode": "sft",
+      "steps": 10,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_qwen27b_sft.json",
+      "state": "failed",
+      "started_utc": "2026-10-16T06:34:49.107111+00:00",
+      "timeout_s": 86400,
+      "finished_utc": "2026-10-16T06:41:06.022095+00:00",
+      "returncode": 1,
+      "timed_out": false,
+      "elapsed": 376.7306126393378,
+      "cleanup_errors": []
+    },
+    {
+      "id": "steps-0010/qwen27b-grpo",
+      "model": "qwen27b",
+      "mode": "grpo",
+      "steps": 10,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_qwen27b_grpo.json",
+      "state": "failed",
+      "started_utc": "2026-10-16T06:41:06.028699+00:00",
+      "timeout_s": 86400,
+      "finished_utc": "2026-10-16T06:59:04.451757+00:00",
+      "returncode": 1,
+      "timed_out": false,
+      "elapsed": 1078.0068490430713,
+      "cleanup_errors": []
+    },
+    {
+      "id": "steps-0100/llama8b-sft",
+      "model": "llama8b",
+      "mode": "sft",
+      "steps": 100,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_llama8b_sft.json",
+      "state": "passed",
+      "started_utc": "2026-10-16T06:59:11.573170+00:00",
+      "timeout_s": 86400,
+      "finished_utc": "2026-10-16T07:02:59.658390+00:00",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed": 228.04398663714528,
+      "cleanup_errors": []
+    },
+    {
+      "id": "steps-0100/llama8b-grpo",
+      "model": "llama8b",
+      "mode": "grpo",
+      "steps": 100,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_llama8b_grpo.json",
+      "state": "running",
+      "started_utc": "2026-10-16T07:02:59.667825+00:00",
+      "timeout_s": 86400
+    },
+    {
+      "id": "steps-0100/qwen27b-sft",
+      "model": "qwen27b",
+      "mode": "sft",
+      "steps": 100,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_qwen27b_sft.json",
+      "state": "pending"
+    },
+    {
+      "id": "steps-0100/qwen27b-grpo",
+      "model": "qwen27b",
+      "mode": "grpo",
+      "steps": 100,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_qwen27b_grpo.json",
+      "state": "pending"
+    },
+    {
+      "id": "steps-1000/llama8b-sft",
+      "model": "llama8b",
+      "mode": "sft",
+      "steps": 1000,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_llama8b_sft.json",
+      "state": "pending"
+    },
+    {
+      "id": "steps-1000/llama8b-grpo",
+      "model": "llama8b",
+      "mode": "grpo",
+      "steps": 1000,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_llama8b_grpo.json",
+      "state": "pending"
+    },
+    {
+      "id": "steps-1000/qwen27b-sft",
+      "model": "qwen27b",
+      "mode": "sft",
+      "steps": 1000,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_qwen27b_sft.json",
+      "state": "pending"
+    },
+    {
+      "id": "steps-1000/qwen27b-grpo",
+      "model": "qwen27b",
+      "mode": "grpo",
+      "steps": 1000,
+      "config": "/workspace/coding/h100-bench-e44796a/configs/h100_quick_qwen27b_grpo.json",
+      "state": "pending"
+    }
+  ],
+  "global_budget_minutes": null,
+  "case_timeout_hours": 24,
+  "order": "stage first, then model and mode; fresh pinned initialization for every attempt",
+  "reports": [
+    {
+      "stage": 10,
+      "path": "reports/steps-0010",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed": 7.0687634609639645,
+      "cleanup_errors": []
+    }
+  ],
+  "preparation_included": false,
+  "elapsed_s": 2481.2951520867646,
+  "allocated_gpu_hours_wall": 5.513989226859477
+}

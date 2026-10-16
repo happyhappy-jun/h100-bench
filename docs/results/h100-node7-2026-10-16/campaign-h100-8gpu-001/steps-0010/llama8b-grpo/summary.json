@@ -1,0 +1,402 @@
+{
+  "schema_version": 1,
+  "name": "h100_quick_llama8b_grpo",
+  "mode": "grpo",
+  "model": "meta-llama/Meta-Llama-3.1-8B",
+  "model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+  "status": "passed",
+  "problems": [],
+  "training_steps": 10,
+  "measured_steps": 8,
+  "warmup_steps": 2,
+  "gpus": 8,
+  "nodes": 1,
+  "config": {
+    "nodes": 1,
+    "global_batch_size": 8,
+    "micro_batch_size": 1,
+    "steps": 10,
+    "warmup_steps": 2,
+    "seed": 42,
+    "dtype": "bfloat16",
+    "strategy": "fsdp2",
+    "learning_rate": 1e-06,
+    "input_data": "/workspace/coding/h100-bench-e44796a/data/sessions.jsonl",
+    "timeout_s": 86380,
+    "allow_cpu_offload": false,
+    "extra_overrides": [],
+    "environment": {},
+    "name": "h100_quick_llama8b_grpo",
+    "model": "/workspace/coding/h100-bench-e44796a/results/h100-8gpu-001/steps-0010/llama8b-grpo/model_assets",
+    "model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+    "mode": "grpo",
+    "gpus": 8,
+    "seq_length": 3072,
+    "prompt_length": 2048,
+    "response_length": 1024,
+    "rollout_n": 4,
+    "rollout_tp": 1,
+    "evidence_class": "h100_quick",
+    "framework_lane": "h100",
+    "expected_gpu": "H100",
+    "chat_template": "/workspace/coding/h100-bench-e44796a/templates/llama3_role.jinja",
+    "enable_prefix_caching": true,
+    "artifact_capture": true,
+    "capture_every_step": 1,
+    "save_checkpoint": true,
+    "checkpoint_every_steps": 10,
+    "checkpoint_keep_all": true,
+    "rollout_memory_fraction": 0.3,
+    "enforce_eager": true,
+    "checkpoint_policy": "final_only",
+    "model_cache_only": true,
+    "measurement_scope": "single 8-GPU bounded workload; initial 10-step stage with 2 warmup steps; staged 100/1000-step attempts use explicit overrides; no scaling validation",
+    "artifact_hash_max_bytes": 67108864,
+    "requested_model": "meta-llama/Meta-Llama-3.1-8B",
+    "resolved_model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+    "chat_template_sha256": "10971429580a0df6bdff2d311e46dc8284ecf0f07b794a39c18314eb73cecacb",
+    "model_source_path": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/snapshots/d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+    "derived_tokenizer_config_sha256": "cf0f1237a0e4d20a68b500dd2a148eb52aea327d4903ea5942309f4dea16f8ac",
+    "model_assets_manifest": "/workspace/coding/h100-bench-e44796a/results/h100-8gpu-001/steps-0010/llama8b-grpo/model_assets_manifest.json"
+  },
+  "wall_time_s": 645.6172408089042,
+  "measured_time_s": 225.52641508355737,
+  "measured_tokens": 93774,
+  "tokens_per_s": 415.8005170492193,
+  "tokens_per_gpu_s": 51.975064631152414,
+  "gpu_hours_per_billion_tokens": 5344.443143054515,
+  "gpu_hours_wall": 1.4347049795753426,
+  "step_time_s": {
+    "n": 8,
+    "mean": 28.19080188544467,
+    "median": 27.01998747512698,
+    "p95": 38.5562573261559,
+    "min": 23.715968556702137,
+    "max": 38.5562573261559
+  },
+  "stages": {
+    "timing_s/adv": {
+      "n": 8,
+      "mean": 0.3437387887388468,
+      "median": 0.32793443463742733,
+      "p95": 0.4005831107497215,
+      "min": 0.29137035086750984,
+      "max": 0.4005831107497215
+    },
+    "timing_s/gen": {
+      "n": 8,
+      "mean": 17.745795442257077,
+      "median": 17.63134965673089,
+      "p95": 19.273442544043064,
+      "min": 16.46368345245719,
+      "max": 19.273442544043064
+    },
+    "timing_s/old_log_prob": {
+      "n": 8,
+      "mean": 1.3465048684738576,
+      "median": 1.298008481040597,
+      "p95": 1.910137202590704,
+      "min": 1.1395657025277615,
+      "max": 1.910137202590704
+    },
+    "timing_s/ref": {
+      "n": 8,
+      "mean": 1.1562457447871566,
+      "median": 1.1180736254900694,
+      "p95": 1.5320418700575829,
+      "min": 1.0105375982820988,
+      "max": 1.5320418700575829
+    },
+    "timing_s/save_checkpoint": {
+      "n": 1,
+      "mean": 13.393823716789484,
+      "median": 13.393823716789484,
+      "p95": 13.393823716789484,
+      "min": 13.393823716789484,
+      "max": 13.393823716789484
+    },
+    "timing_s/step": {
+      "n": 8,
+      "mean": 28.19080188544467,
+      "median": 27.01998747512698,
+      "p95": 38.5562573261559,
+      "min": 23.715968556702137,
+      "max": 38.5562573261559
+    },
+    "timing_s/update_actor": {
+      "n": 8,
+      "mean": 3.0755792730487883,
+      "median": 2.9781673662364483,
+      "p95": 4.20582127571106,
+      "min": 2.2181724086403847,
+      "max": 4.20582127571106
+    },
+    "timing_s/update_weights": {
+      "n": 8,
+      "mean": 2.668408430647105,
+      "median": 2.628134274855256,
+      "p95": 3.7047180719673634,
+      "min": 1.947088249027729,
+      "max": 3.7047180719673634
+    }
+  },
+  "loss": {
+    "n": 8,
+    "mean": 0.008381859420296678,
+    "median": 0.0,
+    "p95": 0.06122986995615065,
+    "min": 0.0,
+    "max": 0.06122986995615065
+  },
+  "gradient_norm": {
+    "n": 8,
+    "mean": 1.37353515625,
+    "median": 0.689453125,
+    "p95": 3.765625,
+    "min": 0.5078125,
+    "max": 3.765625
+  },
+  "nonzero_gradient_observed": true,
+  "peak_memory_gib": 11.559672832489014,
+  "peak_memory_source": "actor/perf/max_memory_allocated_gb",
+  "framework_mfu": {
+    "n": 8,
+    "mean": 0.02863805117492161,
+    "median": 0.030641222410182342,
+    "p95": 0.036757278704762406,
+    "min": 0.01447229997057497,
+    "max": 0.036757278704762406
+  },
+  "telemetry": {
+    "scope": "allocated GPUs, complete framework subprocess lifetime",
+    "devices": {
+      "GPU-a663b9da-4335-c8a1-47c0-0d307e24de39": {
+        "utilization_pct": {
+          "n": 622,
+          "mean": 13.554662379421222,
+          "median": 0.0,
+          "p95": 73.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 622,
+          "mean": 15511.438906752412,
+          "median": 13377.0,
+          "p95": 32339.0,
+          "min": 0.0,
+          "max": 32339.0
+        },
+        "power_w": {
+          "n": 622,
+          "mean": 140.37622186495176,
+          "median": 116.94999999999999,
+          "p95": 251.1,
+          "min": 69.86,
+          "max": 366.16
+        }
+      },
+      "GPU-1ffb4cdf-85a0-c868-5997-35ed0dd44486": {
+        "utilization_pct": {
+          "n": 622,
+          "mean": 17.059485530546624,
+          "median": 0.0,
+          "p95": 70.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 622,
+          "mean": 15373.546623794213,
+          "median": 13155.0,
+          "p95": 32323.0,
+          "min": 0.0,
+          "max": 32325.0
+        },
+        "power_w": {
+          "n": 622,
+          "mean": 147.23781350482315,
+          "median": 116.05000000000001,
+          "p95": 251.33,
+          "min": 68.84,
+          "max": 362.72
+        }
+      },
+      "GPU-bd89df38-0749-652c-55b0-7841a3db7cd3": {
+        "utilization_pct": {
+          "n": 622,
+          "mean": 14.493569131832798,
+          "median": 0.0,
+          "p95": 75.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 622,
+          "mean": 15310.146302250803,
+          "median": 12673.0,
+          "p95": 32307.0,
+          "min": 0.0,
+          "max": 32309.0
+        },
+        "power_w": {
+          "n": 622,
+          "mean": 146.43940514469455,
+          "median": 122.245,
+          "p95": 264.38,
+          "min": 70.99,
+          "max": 364.74
+        }
+      },
+      "GPU-d916f720-833f-189a-35e8-92c0b1c78d9b": {
+        "utilization_pct": {
+          "n": 622,
+          "mean": 11.709003215434084,
+          "median": 0.0,
+          "p95": 69.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 622,
+          "mean": 15307.424437299036,
+          "median": 12655.0,
+          "p95": 32309.0,
+          "min": 0.0,
+          "max": 32323.0
+        },
+        "power_w": {
+          "n": 622,
+          "mean": 131.63385852090033,
+          "median": 112.96,
+          "p95": 241.06,
+          "min": 67.48,
+          "max": 315.52
+        }
+      },
+      "GPU-17508db6-b219-f8b0-4e2b-75c6c4ec4a7f": {
+        "utilization_pct": {
+          "n": 622,
+          "mean": 15.139871382636656,
+          "median": 0.0,
+          "p95": 78.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 622,
+          "mean": 15343.557877813504,
+          "median": 12917.0,
+          "p95": 32305.0,
+          "min": 0.0,
+          "max": 32325.0
+        },
+        "power_w": {
+          "n": 622,
+          "mean": 137.9433118971061,
+          "median": 114.56,
+          "p95": 253.64,
+          "min": 67.68,
+          "max": 329.62
+        }
+      },
+      "GPU-912d8533-d421-098a-9315-bcd699293498": {
+        "utilization_pct": {
+          "n": 622,
+          "mean": 14.162379421221864,
+          "median": 0.0,
+          "p95": 76.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 622,
+          "mean": 15338.654340836012,
+          "median": 12673.0,
+          "p95": 32323.0,
+          "min": 0.0,
+          "max": 32325.0
+        },
+        "power_w": {
+          "n": 622,
+          "mean": 141.60860128617364,
+          "median": 119.11500000000001,
+          "p95": 250.68,
+          "min": 69.07,
+          "max": 329.89
+        }
+      },
+      "GPU-0a0b3e04-5ddc-4456-7c89-98134d8bf688": {
+        "utilization_pct": {
+          "n": 622,
+          "mean": 17.313504823151124,
+          "median": 0.0,
+          "p95": 77.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 622,
+          "mean": 15347.11575562701,
+          "median": 12557.0,
+          "p95": 32307.0,
+          "min": 0.0,
+          "max": 32323.0
+        },
+        "power_w": {
+          "n": 622,
+          "mean": 143.2023311897106,
+          "median": 113.295,
+          "p95": 247.74,
+          "min": 68.05,
+          "max": 310.67
+        }
+      },
+      "GPU-0f944f51-7dd9-d625-90a2-3dd8e3aec71e": {
+        "utilization_pct": {
+          "n": 622,
+          "mean": 13.258842443729904,
+          "median": 0.0,
+          "p95": 82.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 622,
+          "mean": 15241.967845659165,
+          "median": 12473.0,
+          "p95": 32325.0,
+          "min": 0.0,
+          "max": 32327.0
+        },
+        "power_w": {
+          "n": 622,
+          "mean": 135.49327974276528,
+          "median": 117.15,
+          "p95": 247.84,
+          "min": 69.18,
+          "max": 328.31
+        }
+      }
+    }
+  },
+  "measurement_scope": "verl GRPO iteration with code-output reward",
+  "token_scope": "prompt plus generated response tokens",
+  "evidence_class": "h100_quick",
+  "reward_audit": {
+    "reward/groups": 64,
+    "reward/complete_groups": 63,
+    "reward/incomplete_groups": 1,
+    "reward/group_nonzero_std_fraction": 0.047619047619047616,
+    "reward/nonzero_std_groups": 3,
+    "reward/samples": 255,
+    "reward/malformed_rows": 7,
+    "reward/proxy_accuracy": 0.0,
+    "reward/format_valid_fraction": 0.011764705882352941,
+    "reward/learning_signal_detected": false,
+    "reward/scope": "code-output surrogate; not SWE-bench"
+  },
+  "warnings": [
+    "No reward variation observed; GRPO learning signal is unverified."
+  ]
+}

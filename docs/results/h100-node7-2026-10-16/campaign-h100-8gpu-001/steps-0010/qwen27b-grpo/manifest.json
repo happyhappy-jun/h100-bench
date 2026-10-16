@@ -1,0 +1,15 @@
+{
+  "state": "failed",
+  "started_utc": "2026-10-16T06:41:06.221281+00:00",
+  "training_state": "failed",
+  "exit_code": 1,
+  "elapsed_s": 1069.922452442348,
+  "artifact_inventory": "artifact_inventory.json",
+  "finished_utc": "2026-10-16T06:59:04.052590+00:00",
+  "campaign_watchdog": {
+    "returncode": 1,
+    "timed_out": false,
+    "elapsed": 1078.0068490430713,
+    "cleanup_errors": []
+  }
+}

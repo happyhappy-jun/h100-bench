@@ -1,0 +1,1 @@
+group_id,hardware,gpu_models,model,mode,baseline_gpus,gpus,nodes,gpus_per_node,replicates,run_ids,mean_tokens_per_s,std_tokens_per_s,mean_tokens_per_gpu_s,speedup,efficiency

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "operation": "derived tokenizer metadata; model weights are immutable symlinks",
+  "source_model_path": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/snapshots/d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+  "requested_model": "meta-llama/Meta-Llama-3.1-8B",
+  "resolved_model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+  "template_source": "/workspace/coding/h100-bench/templates/llama3_role.jinja",
+  "chat_template_sha256": "10971429580a0df6bdff2d311e46dc8284ecf0f07b794a39c18314eb73cecacb",
+  "original_tokenizer_config_sha256": "8004530facf809ac432114de2a4dcc65fcb632da5ec16d666091aeb6a2ee444a",
+  "derived_tokenizer_config_sha256": "cf0f1237a0e4d20a68b500dd2a148eb52aea327d4903ea5942309f4dea16f8ac",
+  "linked_assets": [
+    {
+      "name": "LICENSE",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/a7c3ca16cee30425ed6ad841a809590f2bcbf290"
+    },
+    {
+      "name": "README.md",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/e70490e45ef7a6a61087776f8b109b5541f62922"
+    },
+    {
+      "name": "USE_POLICY.md",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/81ebb55902285e8dd5804ccf423d17ffb2a622ee"
+    },
+    {
+      "name": "config.json",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/cccf055d6f8f210387a248c91dc40e0c7a4bafab"
+    },
+    {
+      "name": "generation_config.json",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/fc9506438b7b55383dc04c0816561442324846c3"
+    },
+    {
+      "name": "model-00001-of-00004.safetensors",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/f8b9704ab09cdeb097aa4a0a24bca96f906eec36bad63ab495bc21475058601b"
+    },
+    {
+      "name": "model-00002-of-00004.safetensors",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/c28b25e7541751056ee126627e007f8d4288319733285e9f7b17b9ff6eb313f0"
+    },
+    {
+      "name": "model-00003-of-00004.safetensors",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/d8e9504dd4e4a146d484c52a97584ec14dac92237c46b064934af67a85e7d383"
+    },
+    {
+      "name": "model-00004-of-00004.safetensors",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/e4486f35c040f683f7d790354f66c169c109eb9fa0954a4a35d7c458a108405d"
+    },
+    {
+      "name": "model.safetensors.index.json",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/0fd8120f1c6acddc268ebc2583058efaf699a771"
+    },
+    {
+      "name": "special_tokens_map.json",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/d8cd5076496dbe4be2320312abc10adc43097b81"
+    },
+    {
+      "name": "tokenizer.json",
+      "source": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/blobs/f916e71031fa08f3c6ef1680a590c15b52d3cdd9"
+    }
+  ]
+}

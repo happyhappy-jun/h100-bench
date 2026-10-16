@@ -1,0 +1,13 @@
+{
+  "reward/groups": 680,
+  "reward/complete_groups": 680,
+  "reward/incomplete_groups": 0,
+  "reward/group_nonzero_std_fraction": 0.08235294117647059,
+  "reward/nonzero_std_groups": 56,
+  "reward/samples": 2720,
+  "reward/malformed_rows": 0,
+  "reward/proxy_accuracy": 0.0,
+  "reward/format_valid_fraction": 0.021323529411764706,
+  "reward/learning_signal_detected": true,
+  "reward/scope": "code-output surrogate; not SWE-bench"
+}

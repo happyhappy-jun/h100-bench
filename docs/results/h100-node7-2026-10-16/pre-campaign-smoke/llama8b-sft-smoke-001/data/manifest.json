@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "source": "/workspace/coding/h100-bench/data/sessions.jsonl",
+  "source_sha256": "beb307a7113a8af03113b2bf750ec4bada3fa1d970f03ab4c378b0537bd36783",
+  "sft_source_sessions": 80,
+  "sft_rows": 80,
+  "sft_repetition_factor": 1,
+  "sft_smoke_excerpts": true,
+  "sft_truncation": "right at configured seq_length; actual unpadded tokens are measured",
+  "rl_workload": "deterministic Python code-output prediction surrogate",
+  "rl_train_rows": 32,
+  "rl_validation_rows": 8,
+  "rl_reward": "correct=1; parseable incorrect=0.1; invalid=0; no generated code execution",
+  "rl_advantage": "native verl GRPO normalization over sampled group; never synthetic",
+  "limitations": [
+    "No live repository edits or shell execution",
+    "No SWE-bench score",
+    "Length limits are ceilings, not observed lengths"
+  ]
+}

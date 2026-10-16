@@ -1,0 +1,9 @@
+{
+  "state": "passed",
+  "started_utc": "2026-10-16T06:21:38.631467+00:00",
+  "training_state": "passed",
+  "exit_code": 0,
+  "elapsed_s": 136.10907147452235,
+  "artifact_inventory": "artifact_inventory.json",
+  "finished_utc": "2026-10-16T06:23:54.744018+00:00"
+}

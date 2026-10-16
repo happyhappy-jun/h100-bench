@@ -1,0 +1,7 @@
+run,manifest_state,logged_steps,measured_steps,step_mean_s,step_median_s,tokens_per_s,tokens_per_gpu_s,peak_memory_gib,wall_time_s,malformed_rows_corrected,format_valid_corrected,complete_groups_corrected,proxy_accuracy_corrected,reward_samples_corrected,note,nonzero_spread_groups_corrected
+steps-0010/llama8b-sft,passed,10,8,0.703,0.7039,46079.76358480557,5759.970448100697,10.72649097442627,135.4663694612682,,,,,,,
+steps-0010/llama8b-grpo,passed,10,8,28.1908,27.02,415.8005170492193,51.975064631152414,11.559672832489014,645.6172408089042,0,0.01171875,64,0.0,256,,3
+steps-0010/qwen27b-sft,failed,0,0,,,,,,375.55592008307576,,,,,,,
+steps-0010/qwen27b-grpo,failed,0,0,,,,,,1066.3547178953886,,,,,,,
+steps-0100/llama8b-sft,passed,100,98,0.7328,0.6927,43986.94010339274,5498.367512924093,10.72649097442627,222.22805540636182,,,,,,,
+steps-0100/llama8b-grpo,running,87,85,25.5835,25.2772,481.68,60.21,11.56792688369751,,0,0.021323529411764706,680,0.0,2720,interrupted; derived from native metrics.jsonl,56

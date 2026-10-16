@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "name": "h100_quick_llama8b_sft",
+  "mode": "sft",
+  "model": "meta-llama/Meta-Llama-3.1-8B",
+  "model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+  "status": "passed",
+  "problems": [],
+  "training_steps": 100,
+  "measured_steps": 98,
+  "warmup_steps": 2,
+  "gpus": 8,
+  "nodes": 1,
+  "config": {
+    "nodes": 1,
+    "global_batch_size": 8,
+    "micro_batch_size": 1,
+    "steps": 100,
+    "warmup_steps": 2,
+    "seed": 42,
+    "dtype": "bfloat16",
+    "strategy": "fsdp2",
+    "learning_rate": 1e-06,
+    "input_data": "/workspace/coding/h100-bench-e44796a/data/sessions.jsonl",
+    "timeout_s": 86380,
+    "allow_cpu_offload": false,
+    "extra_overrides": [],
+    "environment": {},
+    "name": "h100_quick_llama8b_sft",
+    "model": "/workspace/coding/h100-bench-e44796a/results/h100-8gpu-001/steps-0100/llama8b-sft/model_assets",
+    "model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+    "mode": "sft",
+    "gpus": 8,
+    "seq_length": 4096,
+    "prompt_length": 2048,
+    "response_length": 1024,
+    "rollout_n": 4,
+    "rollout_tp": 1,
+    "evidence_class": "h100_quick",
+    "framework_lane": "h100",
+    "expected_gpu": "H100",
+    "chat_template": "/workspace/coding/h100-bench-e44796a/templates/llama3_role.jinja",
+    "enable_prefix_caching": true,
+    "artifact_capture": true,
+    "capture_every_step": 1,
+    "save_checkpoint": true,
+    "checkpoint_every_steps": 100,
+    "checkpoint_keep_all": true,
+    "rollout_memory_fraction": 0.3,
+    "enforce_eager": true,
+    "checkpoint_policy": "final_only",
+    "model_cache_only": true,
+    "measurement_scope": "single 8-GPU bounded workload; initial 10-step stage with 2 warmup steps; staged 100/1000-step attempts use explicit overrides; no scaling validation",
+    "artifact_hash_max_bytes": 67108864,
+    "requested_model": "meta-llama/Meta-Llama-3.1-8B",
+    "resolved_model_revision": "d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+    "chat_template_sha256": "10971429580a0df6bdff2d311e46dc8284ecf0f07b794a39c18314eb73cecacb",
+    "model_source_path": "/workspace/coding/hf-home/hub/models--meta-llama--Meta-Llama-3.1-8B/snapshots/d04e592bb4f6aa9cfee91e2e20afa771667e1d4b",
+    "derived_tokenizer_config_sha256": "cf0f1237a0e4d20a68b500dd2a148eb52aea327d4903ea5942309f4dea16f8ac",
+    "model_assets_manifest": "/workspace/coding/h100-bench-e44796a/results/h100-8gpu-001/steps-0100/llama8b-sft/model_assets_manifest.json"
+  },
+  "wall_time_s": 222.22805540636182,
+  "measured_time_s": 71.8127924464643,
+  "measured_tokens": 3158825,
+  "tokens_per_s": 43986.94010339274,
+  "tokens_per_gpu_s": 5498.367512924093,
+  "gpu_hours_per_billion_tokens": 50.520045654433254,
+  "gpu_hours_wall": 0.4938401231252485,
+  "step_time_s": {
+    "n": 98,
+    "mean": 0.7327835963924929,
+    "median": 0.6927371583878994,
+    "p95": 1.0142356976866722,
+    "min": 0.6809258684515953,
+    "max": 1.8683982752263546
+  },
+  "stages": {
+    "timing_s/train_step": {
+      "n": 98,
+      "mean": 0.7327835963924929,
+      "median": 0.6927371583878994,
+      "p95": 1.0142356976866722,
+      "min": 0.6809258684515953,
+      "max": 1.8683982752263546
+    },
+    "timing_s/train_step_native": {
+      "n": 98,
+      "mean": 0.7428182763788773,
+      "median": 0.7025485001504421,
+      "p95": 1.0242787338793278,
+      "min": 0.6911102160811424,
+      "max": 1.8779935613274574
+    }
+  },
+  "loss": {
+    "n": 98,
+    "mean": 0.8467193878426844,
+    "median": 0.8430518209934235,
+    "p95": 1.0397629737854004,
+    "min": 0.5852036476135254,
+    "max": 1.198157787322998
+  },
+  "gradient_norm": {
+    "n": 98,
+    "mean": 18.528380102040817,
+    "median": 12.59375,
+    "p95": 51.75,
+    "min": 5.875,
+    "max": 123.5
+  },
+  "nonzero_gradient_observed": true,
+  "peak_memory_gib": 10.72649097442627,
+  "peak_memory_source": "perf/max_memory_allocated_gb",
+  "framework_mfu": {
+    "n": 98,
+    "mean": 0.28899691186964827,
+    "median": 0.2983526448016053,
+    "p95": 0.3065798522284258,
+    "min": 0.11077818743960284,
+    "max": 0.3078573955660759
+  },
+  "telemetry": {
+    "scope": "allocated GPUs, complete framework subprocess lifetime",
+    "devices": {
+      "GPU-a663b9da-4335-c8a1-47c0-0d307e24de39": {
+        "utilization_pct": {
+          "n": 208,
+          "mean": 38.19230769230769,
+          "median": 2.5,
+          "p95": 100.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 208,
+          "mean": 9851.1875,
+          "median": 6823.0,
+          "p95": 19681.0,
+          "min": 0.0,
+          "max": 19681.0
+        },
+        "power_w": {
+          "n": 208,
+          "mean": 296.68754807692306,
+          "median": 125.395,
+          "p95": 627.34,
+          "min": 70.22,
+          "max": 654.29
+        }
+      },
+      "GPU-1ffb4cdf-85a0-c868-5997-35ed0dd44486": {
+        "utilization_pct": {
+          "n": 208,
+          "mean": 46.53365384615385,
+          "median": 24.0,
+          "p95": 100.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 208,
+          "mean": 9903.504807692309,
+          "median": 7349.0,
+          "p95": 19745.0,
+          "min": 0.0,
+          "max": 19745.0
+        },
+        "power_w": {
+          "n": 208,
+          "mean": 297.97942307692307,
+          "median": 125.885,
+          "p95": 633.76,
+          "min": 69.03,
+          "max": 659.93
+        }
+      },
+      "GPU-bd89df38-0749-652c-55b0-7841a3db7cd3": {
+        "utilization_pct": {
+          "n": 208,
+          "mean": 46.54807692307692,
+          "median": 26.0,
+          "p95": 100.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 208,
+          "mean": 9453.98076923077,
+          "median": 6660.0,
+          "p95": 18743.0,
+          "min": 0.0,
+          "max": 18743.0
+        },
+        "power_w": {
+          "n": 208,
+          "mean": 303.25740384615386,
+          "median": 132.715,
+          "p95": 640.37,
+          "min": 71.51,
+          "max": 661.37
+        }
+      },
+      "GPU-d916f720-833f-189a-35e8-92c0b1c78d9b": {
+        "utilization_pct": {
+          "n": 208,
+          "mean": 47.10576923076923,
+          "median": 38.5,
+          "p95": 100.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 208,
+          "mean": 9870.557692307691,
+          "median": 6660.0,
+          "p95": 19745.0,
+          "min": 0.0,
+          "max": 19745.0
+        },
+        "power_w": {
+          "n": 208,
+          "mean": 291.9876923076923,
+          "median": 124.11500000000001,
+          "p95": 618.13,
+          "min": 67.62,
+          "max": 649.64
+        }
+      },
+      "GPU-17508db6-b219-f8b0-4e2b-75c6c4ec4a7f": {
+        "utilization_pct": {
+          "n": 208,
+          "mean": 48.57692307692308,
+          "median": 44.5,
+          "p95": 100.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 208,
+          "mean": 9903.514423076924,
+          "median": 7349.0,
+          "p95": 19745.0,
+          "min": 0.0,
+          "max": 19745.0
+        },
+        "power_w": {
+          "n": 208,
+          "mean": 295.4963942307692,
+          "median": 124.965,
+          "p95": 633.52,
+          "min": 67.98,
+          "max": 654.53
+        }
+      },
+      "GPU-912d8533-d421-098a-9315-bcd699293498": {
+        "utilization_pct": {
+          "n": 208,
+          "mean": 47.81730769230769,
+          "median": 38.0,
+          "p95": 100.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 208,
+          "mean": 9868.5,
+          "median": 6660.0,
+          "p95": 19745.0,
+          "min": 0.0,
+          "max": 19745.0
+        },
+        "power_w": {
+          "n": 208,
+          "mean": 299.76158653846153,
+          "median": 130.405,
+          "p95": 632.54,
+          "min": 69.48,
+          "max": 652.89
+        }
+      },
+      "GPU-0a0b3e04-5ddc-4456-7c89-98134d8bf688": {
+        "utilization_pct": {
+          "n": 208,
+          "mean": 47.66826923076923,
+          "median": 36.5,
+          "p95": 100.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 208,
+          "mean": 9868.451923076924,
+          "median": 6660.0,
+          "p95": 19745.0,
+          "min": 0.0,
+          "max": 19745.0
+        },
+        "power_w": {
+          "n": 208,
+          "mean": 295.37451923076924,
+          "median": 123.565,
+          "p95": 625.34,
+          "min": 68.22,
+          "max": 644.66
+        }
+      },
+      "GPU-0f944f51-7dd9-d625-90a2-3dd8e3aec71e": {
+        "utilization_pct": {
+          "n": 208,
+          "mean": 47.0,
+          "median": 27.5,
+          "p95": 100.0,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory_used_mib": {
+          "n": 208,
+          "mean": 9870.4375,
+          "median": 6660.0,
+          "p95": 19745.0,
+          "min": 0.0,
+          "max": 19745.0
+        },
+        "power_w": {
+          "n": 208,
+          "mean": 295.83870192307694,
+          "median": 127.445,
+          "p95": 624.22,
+          "min": 69.49,
+          "max": 657.0
+        }
+      }
+    }
+  },
+  "measurement_scope": "SFT training step",
+  "token_scope": "unpadded input tokens (including masked prompt tokens)",
+  "evidence_class": "h100_quick",
+  "warnings": []
+}
