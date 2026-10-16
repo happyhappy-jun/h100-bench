@@ -74,3 +74,13 @@ RL hook은 native TaskRunner를 감싸는 driver actor에만 설치한다. v0.9.
 저장은 동기식이다. Manifest `elapsed_s`는 CPU 복사·payload 직렬화·SHA256 계산 시간이며, TransferQueue 조회와 마지막 metadata/manifest 기록 전체 시간을 포함하는 총 오버헤드가 아니다. SFT `timing_s/train_step`의 CUDA 구간에는 입력·출력 저장이 들어가지 않고 `bench/artifact_capture_s`에 payload 저장 시간의 합이 별도로 남는다. RL native `timing_s/step`에는 해당 블록 안에서 수행한 capture와 checkpoint 저장이 들어가며, prompt 준비처럼 블록 밖의 작업은 제외된다. 이 시간을 저장 기능이 없던 이전 실측과 같은 조건으로 비교하거나 저장 시간을 추정하여 빼지 않는다. 전체 프로세스 wall time과 파일 용량을 함께 사용한다. 매 단계 전체 checkpoint는 27B 모델에서 여러 TB를 차지할 수 있으므로 실행 전 여유 공간 검사와 명시적인 cadence가 필요하다.
 
 v0.9.1의 `rl_update_output`은 업데이트 이후의 TransferQueue batch이며 optimizer 함수의 원시 반환값이나 gradient 전체가 아니다. 정책 업데이트 scalar는 native `metrics.jsonl`에도 보존된다. cadence가 1보다 커도 첫 학습 단계는 항상 보존한다.
+
+## 8-H100 단계별 측정 프로파일
+
+`configs/h100_quick_{llama8b,qwen27b}_{sft,grpo}.json`은 기존 전체 프로파일과 별개다. 모두 H100 8개, global batch 8, micro batch 1, BF16 FSDP2를 사용한다. 기본 단계는 총 10 step 중 warmup 2 step이며, 캠페인은 별도 attempt로 100·1,000 step을 순서대로 지정할 수 있다. 각각 초기 checkpoint에서 시작하는 독립 실행이며 이전 attempt의 학습 상태를 자동으로 이어받지 않는다.
+
+SFT 길이 상한은 4,096이고, GRPO는 prompt 2,048 + response 1,024, 그룹당 응답 4개다. Llama rollout TP는 1, Qwen27B는 4이며 vLLM 메모리 비율은 0.30이다. Qwen의 BF16 가중치 약 54GB를 TP4로 나누어 H100 80GB의 약 24GB rollout pool 안에서 여유를 확보하려는 설정이다. 이는 GPU 실측 OOM 검증을 대신하는 보장이 아니다. Qwen27B 공식 recipe 역시 기본 TP4를 사용한다. 모든 quick profile은 eager rollout과 GPU 내 학습 상태를 명시한다.
+
+매 단계 batch·scalar·manifest는 보존하지만 전체 모델·옵티마이저 checkpoint는 각 attempt의 마지막에 한 번만 저장한다. `checkpoint_policy=final_only`는 `checkpoint_every_steps=steps`를 요구한다. 10/100/1,000의 세 attempt가 모두 완료되면 모델·모드별로 전체 checkpoint 세 개가 남는다. GRPO 마지막 step의 native 시간에는 checkpoint 저장도 포함되므로 `timing_s/save_checkpoint`를 함께 해석한다. 이 짧은 문맥 측정은 제안서의 장문맥·확장성·반복 실험 검증으로 표시하지 않는다. 모델 준비는 측정 캠페인 전에 끝내고, 실행 중 cache-only 정책으로 추가 다운로드를 차단한다. 1,000 step까지의 실제 완료 시간은 사전 보장하지 않는다.
+
+사용자가 1,000 step 완료를 시간 제한보다 우선했으므로 기본 캠페인은 10 → 100 → 1,000 순서로 각 단계의 네 모델·모드 조합, 총 12 attempt를 완료한다. warmup은 각 attempt에서 동일하게 2 step이다. `quick`은 짧은 문맥 workload 이름이며 2시간 내 종료를 뜻하지 않는다. attempt별 watchdog은 24시간이고, 캠페인 전체 예산 제한은 명시적으로 요청할 때만 적용한다.

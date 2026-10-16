@@ -53,6 +53,9 @@ def load_config(path, model=None, overrides=None):
     c.setdefault("save_checkpoint", True)
     c.setdefault("checkpoint_every_steps", 1)
     c.setdefault("checkpoint_keep_all", True)
+    c.setdefault("checkpoint_policy", "periodic")
+    c.setdefault("model_cache_only", False)
+    c.setdefault("artifact_hash_max_bytes", None)
     if model:
         c["model"] = model
         c["model_override"] = True
@@ -61,6 +64,12 @@ def load_config(path, model=None, overrides=None):
         if not sep or key not in c:
             raise ValueError(f"Override must name an existing top-level config field: {item}")
         c[key] = json.loads(value)
+    if c["checkpoint_policy"] == "final_only":
+        c["checkpoint_every_steps"] = c["steps"]
+    elif c["checkpoint_policy"] != "periodic":
+        raise ValueError("checkpoint_policy must be periodic or final_only")
+    if c["artifact_hash_max_bytes"] is not None and (type(c["artifact_hash_max_bytes"]) is not int or c["artifact_hash_max_bytes"] < 1):
+        raise ValueError("artifact_hash_max_bytes must be null or a positive integer")
     if c.get("mode") not in ("sft", "grpo"):
         raise ValueError("mode must be sft or grpo")
     if c["dtype"] != "bfloat16" or c["strategy"] != "fsdp2":
@@ -73,7 +82,7 @@ def load_config(path, model=None, overrides=None):
     for key in ("capture_every_step", "checkpoint_every_steps"):
         if type(c[key]) is not int or c[key] < 1:
             raise ValueError(f"{key} must be a positive integer")
-    for key in ("artifact_capture", "save_checkpoint", "checkpoint_keep_all"):
+    for key in ("artifact_capture", "save_checkpoint", "checkpoint_keep_all", "model_cache_only"):
         if type(c[key]) is not bool:
             raise ValueError(f"{key} must be a boolean")
     if not 0 <= c["warmup_steps"] < c["steps"]:
@@ -168,8 +177,15 @@ def resolve_model(config):
     else:
         from huggingface_hub import snapshot_download
         resolved = Path(snapshot_download(requested, revision=result.get("model_revision", "main"),
+                            local_files_only=result.get("model_cache_only", False),
                             ignore_patterns=["*.pth", "*.bin", "*.gguf", "*.onnx", "original/*"]))
         result["resolved_model_revision"] = resolved.name
+        if result.get("model_cache_only"):
+            index = resolved / "model.safetensors.index.json"
+            shards = set(json.loads(index.read_text())["weight_map"].values()) if index.is_file() else {"model.safetensors"}
+            missing = [name for name in {"config.json", "tokenizer_config.json"} | shards if not (resolved / name).is_file()]
+            if missing:
+                raise RuntimeError("Incomplete model cache; run campaign prepare first: " + ", ".join(sorted(missing)))
     result["model"] = str(resolved)
     if result.get("chat_template"):
         template = Path(result["chat_template"])
@@ -328,7 +344,7 @@ def run(config, output, dry_run=False):
         write_json(output / "manifest.json", manifest)
         from .run_evidence import inventory
         try:
-            captured = inventory(output)
+            captured = inventory(output, max_hash_bytes=config.get("artifact_hash_max_bytes"))
             if captured["errors"]:
                 print("Artifact inventory has errors; inspect artifact_inventory.json", file=sys.stderr)
                 code = 1

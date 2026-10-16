@@ -23,6 +23,11 @@ class FrameworkContractTests(unittest.TestCase):
         self.assertIn('actor_rollout_ref.actor.checkpoint.save_contents=["model","optimizer","extra"]', command)
         with self.assertRaises(ValueError):
             build_commands({**cfg, 'checkpoint_keep_all': False}, Path('/tmp/capture-contract'))
+        with self.assertRaises(ValueError):
+            build_commands({**cfg, 'steps': 10, 'checkpoint_policy': 'final_only'}, Path('/tmp/capture-contract'))
+        final = build_commands({**cfg, 'steps': 10, 'checkpoint_policy': 'final_only',
+                                'checkpoint_every_steps': 10}, Path('/tmp/capture-contract'))[0]
+        self.assertIn('trainer.save_freq=10', final)
 
     def test_artifact_tensor_roundtrip_and_hash(self):
         try:

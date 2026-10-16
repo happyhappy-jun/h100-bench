@@ -115,6 +115,11 @@ new weights into the rollout engine. No hand-written loss or advantage is used.
     capture_every = int(config.get("capture_every_step", 1))
     save_checkpoint = bool(config.get("save_checkpoint", True))
     checkpoint_every = int(config.get("checkpoint_every_steps", 1))
+    checkpoint_policy = config.get("checkpoint_policy", "periodic")
+    if checkpoint_policy not in {"periodic", "final_only"}:
+        raise ValueError("checkpoint_policy must be periodic or final_only")
+    if checkpoint_policy == "final_only" and (not save_checkpoint or checkpoint_every != steps):
+        raise ValueError("final_only requires save_checkpoint=true and checkpoint_every_steps=steps")
     if capture_every < 1 or checkpoint_every < 1:
         raise ValueError("Capture and checkpoint cadence must be positive")
     if not config.get("checkpoint_keep_all", True):
