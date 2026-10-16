@@ -1,0 +1,3 @@
+# Report-only dependencies. Install in .venv-report, never in the training venv.
+# The H100 training environment comes exclusively from pinned verl's uv.lock.
+matplotlib>=3.9,<4

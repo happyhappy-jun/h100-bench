@@ -11,3 +11,8 @@ results_*/
 *.tar.gz
 *.zip
 .cache/
+output/
+vendor/
+.venv*/
+local/
+*.parquet
